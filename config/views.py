@@ -5,7 +5,7 @@ from django.template.loader import get_template
 
 def home(request):
 	if request.user.is_authenticated():
-		return render(request, 'base.html', {})
+		return render(request, 'index/index.html', {})
 	else:
 		return HttpResponseRedirect("/login/")
 
