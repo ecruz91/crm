@@ -1,198 +1,170 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sistema de Administración de Clientes | {% block title %}{codelab}{% endblock %}</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/static/css/ionicons.min.css">
-    <link rel="stylesheet" href="/static/css/panel.min.css">
-    <link rel="stylesheet" href="/static/css/skins/skin-black.min.css">
-  </head>
-{% if user.is_authenticated %}
-<body class="hold-transition skin-black fixed sidebar-mini">
-{% else %}
-<body class="hold-transition login-page" style="background-image: url('/static/img/overlay.png'), url('/static/img/background.jpg');background-size: auto,cover;">
-{% endif %}
-  
-{% block body.login %}{% endblock %}
+{% extends "starter.html" %}  
 {% block body.dashboard %}
-
-<div class="wrapper">
-  <header class="main-header">
-    <a href="/" class="logo">
-      <span class="logo-mini"><b>{ }</b></span>
-      <span class="logo-lg"><img src="http://codelab.mx/wp-content/uploads/2015/12/logo_codelab.png" alt="Home" style="max-height: 50px; max-width: 230px"></span>
-    </a>
-    <nav class="navbar navbar-static-top" role="navigation">
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"></a>
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
-          <!-- Menu -->
-            <li><a href="/logout"><i class="fa fa-sign-out"></i><span class="hidden-xs"> Cerrar Sesión</span></a></li>
-            <li><a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a></li>
-          </ul>
-          </div>
-        </nav>
-      </header>
-      <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
-
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-
-          <!-- Sidebar user panel (optional) -->
-          <div class="user-panel">
-            <div class="pull-left image">
-              <img src="/static/img/no-photo.jpg" class="user-image" alt="Foto de Pérfil" style="border-radius: 50%;">
+  <div class="wrapper">
+    <header class="main-header">
+      <a href="/" class="logo">
+        <span class="logo-mini"><b>{ }</b></span>
+        <span class="logo-lg"><img src="http://codelab.mx/wp-content/uploads/2015/12/logo_codelab.png" alt="Home" style="max-height: 50px; max-width: 230px"></span>
+      </a>
+      <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"></a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+            <!-- Menu -->
+              <li><a href="/logout"><i class="fa fa-sign-out"></i><span class="hidden-xs"> Cerrar Sesión</span></a></li>
+              <li><a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a></li>
+            </ul>
             </div>
-            <div class="pull-left info">
-              <p>Gonzalo Zardain</p>
-              <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Administrador</a>
+          </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+
+          <!-- sidebar: style can be found in sidebar.less -->
+          <section class="sidebar">
+
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+              <div class="pull-left image">
+                <img src="/static/img/no-photo.jpg" class="user-image" alt="Foto de Pérfil" style="border-radius: 50%;">
+              </div>
+              <div class="pull-left info">
+                <p>Gonzalo Zardain</p>
+                <!-- Status -->
+                <a href="#"><i class="fa fa-circle text-success"></i> Administrador</a>
+              </div>
             </div>
-          </div>
 
-          <!-- search form (Optional) -->
-          <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Buscar...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-          </form>
-          <!-- /.search form -->
-
-          <!-- Sidebar Menu -->
-          <ul class="sidebar-menu">
-            <!-- Optionally, you can add icons to the links -->
-
-            <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Home</span></a></li>
-            <li><a href="/campus"><i class="fa fa-university"></i> <span>Campus</span></a></li>
-            <li><a href="/professors"><i class="fa fa-users"></i> <span>Profesores</span></a></li>
-            <li><a href="/students"><i class="fa fa-mortar-board"></i> <span>Alumnos</span></a></li>
-            <li><a href="/library"><i class="fa fa-book"></i> <span>Biblioteca</span></a></li>
-            <li><a href="/settings"><i class="fa fa-wrench"></i> <span>Configuración</span></a></li>
-            <li><a href="/settings"><i class="fa fa-user"></i> <span>Perfil</span></a></li>
-          </ul><!-- /.sidebar-menu -->
-        </section>
-        <!-- /.sidebar -->
-      </aside>
-
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            Header
-            <small>Descripción</small>
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-            <li>Breadcrmb</li>
-            <li class="active">Here</li>
-          </ol>
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
-
-          <!-- Your Page Content Here -->
-<form class="box" method="post" action="" enctype="multipart/form-data">
-  <div class="box__input">
-    <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
-    <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
-    <button class="box__button" type="submit">Upload</button>
-  </div>
-  <div class="box__uploading">Uploading&hellip;</div>
-  <div class="box__success">Done!</div>
-  <div class="box__error">Error! <span></span>.</div>
-</form>
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
-
-      <!-- Main Footer -->
-      <footer class="main-footer">
-        <!-- To the right -->
-        <div class="pull-right hidden-xs">
-          Todos los derechos Reservados.
-        </div>
-        <!-- Default to the left -->
-        <strong>Copyright &copy; {% now "Y" %} |</strong> <a href="#">{code<strong>lab</strong>}</a>.
-      </footer>
-
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-          <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <!-- Home tab content -->
-          <div class="tab-pane active" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Recent Activity</h3>
-            <ul class="control-sidebar-menu">
-              <li>
-                <a href="javascript::;">
-                  <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-                  <div class="menu-info">
-                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-                    <p>Will be 23 on April 24th</p>
-                  </div>
-                </a>
-              </li>
-            </ul><!-- /.control-sidebar-menu -->
-
-            <h3 class="control-sidebar-heading">Tasks Progress</h3>
-            <ul class="control-sidebar-menu">
-              <li>
-                <a href="javascript::;">
-                  <h4 class="control-sidebar-subheading">
-                    Custom Template Design
-                    <span class="label label-danger pull-right">70%</span>
-                  </h4>
-                  <div class="progress progress-xxs">
-                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                  </div>
-                </a>
-              </li>
-            </ul><!-- /.control-sidebar-menu -->
-
-          </div><!-- /.tab-pane -->
-          <!-- Stats tab content -->
-          <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
-          <!-- Settings tab content -->
-          <div class="tab-pane" id="control-sidebar-settings-tab">
-            <form method="post">
-              <h3 class="control-sidebar-heading">General Settings</h3>
-              <div class="form-group">
-                <label class="control-sidebar-subheading">
-                  Report panel usage
-                  <input type="checkbox" class="pull-right" checked>
-                </label>
-                <p>
-                  Some information about this general settings option
-                </p>
-              </div><!-- /.form-group -->
+            <!-- search form (Optional) -->
+            <form action="#" method="get" class="sidebar-form">
+              <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Buscar...">
+                <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+              </div>
             </form>
-          </div><!-- /.tab-pane -->
-        </div>
-      </aside><!-- /.control-sidebar -->
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
-      <div class="control-sidebar-bg"></div>
-    </div>
+            <!-- /.search form -->
 
-  {% endblock %}
-    </body>
-  <script src="/static/js/jQuery-2.1.4.min.js"></script>
-  <script src="/static/js/bootstrap.min.js"></script>
-  <script src="/static/js/app.min.js"></script>
-  <script src="/static/js/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-  {% block aditional.js %} {% endblock %}
-</html>
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+              <!-- Optionally, you can add icons to the links -->
+
+              <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Home</span></a></li>
+              <li><a href="/campus"><i class="fa fa-university"></i> <span>Campus</span></a></li>
+              <li><a href="/professors"><i class="fa fa-users"></i> <span>Profesores</span></a></li>
+              <li><a href="/students"><i class="fa fa-mortar-board"></i> <span>Alumnos</span></a></li>
+              <li><a href="/library"><i class="fa fa-book"></i> <span>Biblioteca</span></a></li>
+              <li><a href="/settings"><i class="fa fa-wrench"></i> <span>Configuración</span></a></li>
+              <li><a href="/settings"><i class="fa fa-user"></i> <span>Perfil</span></a></li>
+            </ul><!-- /.sidebar-menu -->
+          </section>
+          <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+          <section class="content-header">
+            <h1>
+              Header
+              <small>Descripción</small>
+            </h1>
+            <ol class="breadcrumb">
+              <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+              <li>Breadcrmb</li>
+              <li class="active">Here</li>
+            </ol>
+          </section>
+
+          <!-- Main content -->
+          <section class="content">
+
+            <!-- Your Page Content Here -->
+  <form class="box" method="post" action="" enctype="multipart/form-data">
+    <div class="box__input">
+      <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
+      <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
+      <button class="box__button" type="submit">Upload</button>
+    </div>
+    <div class="box__uploading">Uploading&hellip;</div>
+    <div class="box__success">Done!</div>
+    <div class="box__error">Error! <span></span>.</div>
+  </form>
+          </section><!-- /.content -->
+        </div><!-- /.content-wrapper -->
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+          <!-- To the right -->
+          <div class="pull-right hidden-xs">
+            Todos los derechos Reservados.
+          </div>
+          <!-- Default to the left -->
+          <strong>Copyright &copy; {% now "Y" %} |</strong> <a href="#">{code<strong>lab</strong>}</a>.
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+          <!-- Create the tabs -->
+          <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane active" id="control-sidebar-home-tab">
+              <h3 class="control-sidebar-heading">Recent Activity</h3>
+              <ul class="control-sidebar-menu">
+                <li>
+                  <a href="javascript::;">
+                    <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                    <div class="menu-info">
+                      <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                      <p>Will be 23 on April 24th</p>
+                    </div>
+                  </a>
+                </li>
+              </ul><!-- /.control-sidebar-menu -->
+
+              <h3 class="control-sidebar-heading">Tasks Progress</h3>
+              <ul class="control-sidebar-menu">
+                <li>
+                  <a href="javascript::;">
+                    <h4 class="control-sidebar-subheading">
+                      Custom Template Design
+                      <span class="label label-danger pull-right">70%</span>
+                    </h4>
+                    <div class="progress progress-xxs">
+                      <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                    </div>
+                  </a>
+                </li>
+              </ul><!-- /.control-sidebar-menu -->
+
+            </div><!-- /.tab-pane -->
+            <!-- Stats tab content -->
+            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+            <!-- Settings tab content -->
+            <div class="tab-pane" id="control-sidebar-settings-tab">
+              <form method="post">
+                <h3 class="control-sidebar-heading">General Settings</h3>
+                <div class="form-group">
+                  <label class="control-sidebar-subheading">
+                    Report panel usage
+                    <input type="checkbox" class="pull-right" checked>
+                  </label>
+                  <p>
+                    Some information about this general settings option
+                  </p>
+                </div><!-- /.form-group -->
+              </form>
+            </div><!-- /.tab-pane -->
+          </div>
+        </aside><!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+      </div>
+{% endblock %}

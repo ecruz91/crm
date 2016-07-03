@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sistema de Administración de Clientes | {% block title %}{codelab}{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/ionicons.min.css">
+    <link rel="stylesheet" href="/static/css/panel.min.css">
+    <link rel="stylesheet" href="/static/css/skins/skin-black.min.css">
+  </head>
+{% if user.is_authenticated %}
+  <body class="hold-transition skin-black fixed sidebar-mini">
+{% else %}
+  <body class="hold-transition login-page" style="background-image: url('/static/img/overlay.png'), url('/static/img/background.jpg');background-size: auto,cover;">
+{% endif %}
+{% block body.login %}{% endblock %}
+{% block body.dashboard %}{% endblock %}
+</body>
+  <script src="/static/js/jQuery-2.1.4.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/app.min.js"></script>
+  <script src="/static/js/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  {% block aditional.js %} {% endblock %}
+</html>
