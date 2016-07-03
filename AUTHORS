@@ -1,0 +1,21 @@
+Este es la lista de Autores de las personas que han contribuido al desarrollo del proyecto
+Los campos son: Nombre (N), email (E), website (W), Descripción de aporte (D), Estado (S)
+Edwin
+
+N: Gonzalo Zardain
+E: g.zardain@codelab.mx
+D: Renderización de plantillas, Modelo Vista Controlador.
+W: http://iamgo.nz
+S: Mexico, Querétaro
+
+N: Edwin Cruz
+E: e.cruz@codelab.mx
+D: Renderización de código HTML y XML
+W: http://eddw.in
+S: México, Querétaro
+
+N: Víctor M. Zardain
+E: v.zardain@codelab.mx
+D: Desarrollo y readaptación de plantillas maestras.
+W: http://zardaindesign.com.mx
+S: México, Querétaro
