@@ -2,4 +2,76 @@
 {% block title %}Clientes{% endblock %}
 {% block menu.clientes %}active{% endblock %}
 {% block page.header %}Clientes{% endblock %}
-{% block page.content %}Mi texto super chidismo aqui{% endblock %}
+{% block page.content %}
+
+{% if users %}
+<div class="box">
+	<div class="box-header"></div>
+	<div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+        	<thead>
+            <tr>
+	            <th>ID</th>
+	            <th>Nombre</th>
+	            <th>Apellido</th>
+	            <th>email</th>
+	            <th>otra cosa</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.first_name }}</td>
+                  <td>{{ user.last_name }}</td>
+                  <td>{{ user.email }}</td>
+                  <td><div class="btn-group">
+                  <a href="ver/{{ user.id }}"<button type="button" class="btn btn-success">Ver</button></a>
+                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            	<tr>
+                  <th>Rendering engine</th>
+                  <th>Browser</th>
+                  <th>Platform(s)</th>
+                  <th>Engine version</th>
+                  <th>CSS grade</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
+{% block aditional.css %}<link rel="stylesheet" href="/static/js/plugins/datatables/dataTables.bootstrap.css">{% endblock %}
+{% block aditional.js %}
+<script src="/static/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/static/js/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
+{% endblock %}

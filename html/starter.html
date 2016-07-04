@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/static/css/ionicons.min.css">
     <link rel="stylesheet" href="/static/css/panel.min.css">
     <link rel="stylesheet" href="/static/css/skins/skin-black.min.css">
+    {% block aditional.css %}{% endblock %}
   </head>
 {% if user.is_authenticated %}
   <body class="hold-transition skin-black fixed sidebar-mini">

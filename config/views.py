@@ -13,7 +13,7 @@ def login_crm(request):
 	if request.user.is_authenticated():
 		return HttpResponseRedirect("/")
 	else:
-		return render(request, 'log/login.html', {})
+		return render(request, 'auth/login.html', {})
 
 def logout_crm(request):
 	if request.user.is_authenticated():
@@ -23,7 +23,6 @@ def logout_crm(request):
 		return HttpResponseRedirect("/login/")
 
 def handler404(request):
-	Galerias = Galeria.objects.reverse()[:6]
-	response = render_to_response('404.html', {'Galerias': Galerias}, context_instance = RequestContext(request))
+	response = render_to_response('404.html', {}, context_instance = RequestContext(request))
 	response.status_code = 404
 	return response
