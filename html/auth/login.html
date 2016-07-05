@@ -1,27 +1,35 @@
 {% extends "starter.html" %}
 {% block title %}Log In{% endblock %}
 {% block body.login %}
-  <div class="login-box">
+  <div class="login-box {% if form.errors %}box box-danger{% endif %}">
     <div class="login-box-body">
       <div class="login-logo">
         <img src="http://codelab.mx/wp-content/uploads/2015/12/logo_codelab.png" alt="Home" style="max-width: 100%; max-height: 100px">
       </div>
       <p style="text-align: center;">Accede al portal en línea</p>
-      {% if form.errors %}
-        <div class="alert alert-danger alert-dismissible">
+      {% if form.errors and not form.non_field_errors %}
+        <div class="alert alert-mini alert-warning margin-bottom-30">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-          <p><i class="icon fa fa-exclamation-triangle"></i> Error de Usuario y/o contraseña.</p>
+          {% if form.errors.items|length == 1 %}<i class="icon fa fa-exclamation-triangle"></i> Llene el campo faltante{% else %}<i class="icon fa fa-exclamation-triangle"></i> Llene los campos faltantes{% endif %}
         </div>
       {% endif %}
+      {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+          <div class="alert alert-mini alert-danger margin-bottom-30">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <i class="icon fa fa-exclamation-triangle"></i> Error de <strong>usuario</strong> y/o <strong>contraseña</strong>.
+          </div>
+        {% endfor %}
+      {% endif %}
       <form method="POST" action="">{% csrf_token %}
-        <div class="form-group has-feedback">
-          <input id="inputError" name="username" type="text" class="form-control" placeholder="Usuario" value="{% if form.username.value %}{{ form.username.value }}{% else %}{% endif %}" autocomplete="off">
-          {% if form.username.errors %}<span class="help-block">Help block with error</span>{% endif %}
+        <div class="form-group has-feedback {% if form.errors %}has-error{% endif %}">
+          <input id="inputError" name="username" type="text" class="form-control" placeholder="Usuario" value="{% if form.username.value %}{{ form.username.value }}{% else %}{% endif %}" autocomplete="off" required="true">
+          {% if form.username.errors %}<span class="help-block" style="color:#dd4b39;">La contraseña no puede estar vacía</span>{% endif %}
           <span class="fa fa-user form-control-feedback"></span>
         </div>
-        <div class="form-group has-feedback">
-          <input name="password" type="password" class="form-control" placeholder="Clave" required>
-          {% if form.password.errors %}<div class="bg-red disabled color-palette" style="font-weight:100; padding:1em;">El nombre de usuario no puede estar vacío.</div>{% endif %}
+        <div class="form-group has-feedback {% if form.errors %}has-error{% endif %}">
+          <input name="password" type="password" class="form-control" placeholder="Clave" required="true">
+          {% if form.password.errors %}<span class="help-block" style="color:#dd4b39;">La contraseña no puede estar vacía</span>{% endif %}
           <span class="fa fa-lock form-control-feedback"></span>
         </div>
         <button type="submit" class="btn btn-primary btn-block btn-flat">Acceder</button>
