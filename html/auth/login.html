@@ -13,7 +13,7 @@
           <p><i class="icon fa fa-exclamation-triangle"></i> Error de Usuario y/o contraseña.</p>
         </div>
       {% endif %}
-      <form method="POST">{% csrf_token %}
+      <form method="POST" action="">{% csrf_token %}
         <div class="form-group has-feedback">
           <input name="username" type="text" class="form-control" placeholder="Usuario" value="{% if form.username.value %}{{ form.username.value }}{% else %}{% endif %}" autocomplete="off" required>
           <span class="fa fa-user form-control-feedback"></span>

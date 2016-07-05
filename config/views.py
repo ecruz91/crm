@@ -1,7 +1,10 @@
-from django.contrib.auth import logout, authenticate, login
+from django.contrib import auth
+from django.contrib.auth import logout, authenticate, login, get_user_model
+from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.template.loader import get_template
+from .forms import UserLoginForm
 
 def home(request):
 	if request.user.is_authenticated():
@@ -13,7 +16,21 @@ def login_crm(request):
 	if request.user.is_authenticated():
 		return HttpResponseRedirect("/")
 	else:
-		return render(request, 'auth/login.html', {})
+		form = UserLoginForm(request.POST or None)
+		if form.is_valid():
+			username = form.cleaned_data.get("username")
+			password = form.cleaned_data.get("password")
+			user = authenticate(username=username, password=password)
+			login(request, user)
+			return HttpResponseRedirect("/")
+		return render(request, 'auth/login.html', {"form":form})
+
+def register_crm(request):
+	if request.user.is_authenticated():
+		logout(request)
+		return HttpResponseRedirect("/")
+	else:
+		return HttpResponseRedirect("/login/")
 
 def logout_crm(request):
 	if request.user.is_authenticated():
